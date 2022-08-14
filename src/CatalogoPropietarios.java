@@ -1,4 +1,7 @@
 
+import javax.swing.JOptionPane;
+
+
 public class CatalogoPropietarios {
     private String Nompropietario;
     private String Apellidos;
@@ -90,5 +93,10 @@ public class CatalogoPropietarios {
     public String GetDatos(){
         return "Propietarios;\n"
                 + "nombre del prorpietario"+ Nompropietario + Apellidos+"\nciudad:"+Ciudad+"\ndireccion"+Direccion+"\nNúmero de telefono;"+telefono+"\n correo electronico"+correo+"\nestado:"+estado;    }
+  
     
-}
+  
+                
+    }
+
+
