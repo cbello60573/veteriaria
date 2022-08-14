@@ -1,15 +1,11 @@
 public class Persona {
  String usuario;   
- String contraseña;   
- String nombre;   
- String apellido;   
+ String contraseña;     
  String estado;   
  
  public Persona(){
      this.usuario="";
-     this.contraseña="";        
-     this.nombre="";        
-     this.apellido="";        
+     this.contraseña="";             
      this.estado="";                
  }
 
@@ -28,23 +24,6 @@ public class Persona {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public String getEstado() {
         return estado;
     }
