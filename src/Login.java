@@ -1,36 +1,26 @@
 
 import java.awt.Color;
 import java.util.LinkedList;
-import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
     
-    LinkedList<String> lista = new LinkedList(); 
-    Persona u = new Persona();
-    ListIterator<String> it = lista.listIterator();
-    
+    LinkedList<String> lista = new LinkedList<>();
+    LinkedList<String> list = new LinkedList<>(); 
+    LinkedList<String> lis = new LinkedList<>(); 
+    Persona us = new Persona();
+    Persona co = new Persona();
+    Persona es = new Persona();
     public void agregar(){
- 
-        u.usuario = JOptionPane.showInputDialog("Ingrese su usuario");
-        u.contraseña = JOptionPane.showInputDialog("Ingrese su contraseña");
-        u.estado = JOptionPane.showInputDialog("Ingrese su estado");
-        int agrego = Integer.parseInt(JOptionPane.showInputDialog("desea agregar otro usuario? si=1/no=0"));
-               
-        lista.add(u.usuario);//0
-        lista.add(u.contraseña);//2
-        lista.add(u.estado);//3
         
-        if(agrego==1){
-        u.usuario = JOptionPane.showInputDialog("Ingrese su usuario");
-        u.contraseña = JOptionPane.showInputDialog("Ingrese su contraseña");
-        u.estado = JOptionPane.showInputDialog("Ingrese su estado");
-        JOptionPane.showInputDialog("desea agregar otro usuario? si/no");
+        us.usuario = JOptionPane.showInputDialog("Ingrese su usuario");
+        co.contraseña = JOptionPane.showInputDialog("Ingrese su contraseña");
+        es.estado = JOptionPane.showInputDialog("Ingrese su estado");
                
-        lista.add(u.usuario);
-        lista.add(u.contraseña);
-        lista.add(u.estado);
-        }
+        lista.addLast(us.usuario);//0
+        list.addLast(co.contraseña);//1
+        lis.addLast(es.estado);//2
+        
     }
     public Login() {
         initComponents();
@@ -283,16 +273,23 @@ public class Login extends javax.swing.JFrame {
         String usuar = usuatext.getText();
         String contra = String.valueOf(contratext.getPassword());
         
-        while(it.hasNext()){    
-            if(usuar.equals(u.getUsuario())){
-                if(contra.equals(u.getContraseña())){
-                    JOptionPane.showMessageDialog(this,"Ingresado correctamente");
-                }else{
-                    JOptionPane.showMessageDialog(this,"La contraseña es incorrecta");
-                }
+        for(int i = 0; i < lista.size(); i++){
+            if(usuar.equals(lista.get(i))){
+                us.getUsuario();
+                for(int x = 0; x < list.size(); x++){
+                    if(contra.equals(list.get(x))){
+                    co.getContraseña();
+                    JOptionPane.showMessageDialog(this, lista);
+                    JOptionPane.showMessageDialog(this, list);
+                    break;
+                    }else{
+                        JOptionPane.showMessageDialog(this, "contraseña incorrecta");
+                        break;
+                    }
+                }    
             }
-        break;    
         }    
+        
     }//GEN-LAST:event_entrarMouseClicked
 
     private void registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registroMouseClicked
