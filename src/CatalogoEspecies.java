@@ -1,12 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author kersy
- */
 public class CatalogoEspecies {
+    String NomEspecie;
+    private String Caracteristicas;
+    private String Estado;
+
+    public CatalogoEspecies() {
+        this.NomEspecie = null ;
+        this.Caracteristicas = null;
+        this.Estado = null;
+    }
+    
+    
+
+    public CatalogoEspecies(String NomEspecie, String Caracteristicas, String Estado) {
+        this.NomEspecie = NomEspecie;
+        this.Caracteristicas = Caracteristicas;
+        this.Estado = Estado;
+    }
+
+    public String getNomEspecie() {
+        return NomEspecie;
+    }
+
+    public void setNomEspecie(String NomEspecie) {
+        this.NomEspecie = NomEspecie;
+    }
+
+    public String getCaracteristicas() {
+        return Caracteristicas;
+    }
+
+    public void setCaracteristicas(String Caracteristicas) {
+        this.Caracteristicas = Caracteristicas;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+    
+    
+    
+    
     
 }

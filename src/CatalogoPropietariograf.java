@@ -306,6 +306,7 @@ public ArrayList<CatalogoPropietarios> propietarios;
         Direccion.setText("");
         correo.setText("");
         telefono.setText("");
+        estado1.setText("");
         
         
         

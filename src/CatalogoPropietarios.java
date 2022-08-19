@@ -3,7 +3,7 @@ import javax.swing.JOptionPane;
 
 
 public class CatalogoPropietarios {
-    private String Nompropietario;
+    String Nompropietario;
     private String Apellidos;
     private String Ciudad;
     private String Direccion;
