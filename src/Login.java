@@ -19,7 +19,6 @@ public class Login extends javax.swing.JFrame {
                
         lista.addLast(us.usuario);//0
         list.addLast(co.contraseña);//1
-        lis.addLast(es.estado);//2
         
     }
     public Login() {
@@ -279,8 +278,9 @@ public class Login extends javax.swing.JFrame {
                 for(int x = 0; x < list.size(); x++){
                     if(contra.equals(list.get(x))){
                     co.getContraseña();
-                    JOptionPane.showMessageDialog(this, lista);
-                    JOptionPane.showMessageDialog(this, list);
+                    Menú m = new Menú();
+                    m.setVisible(true);
+                    this.setVisible(false);
                     break;
                     }else{
                         JOptionPane.showMessageDialog(this, "contraseña incorrecta");
