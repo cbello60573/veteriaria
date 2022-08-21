@@ -81,6 +81,11 @@ public ArrayList<CatalogoEspecies> Especies;
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton3.setText("Inactivar");
@@ -175,13 +180,20 @@ public ArrayList<CatalogoEspecies> Especies;
         CatalogoEspecies especies = new CatalogoEspecies();
         String nomespecie, caracteristicas, estado;
         
-        nomespecie = NomEspecie.getText();
-        caracteristicas = Caracteristicas.getText();
+        try{
+            nomespecie = NomEspecie.getText();
+            caracteristicas = Caracteristicas.getText();
         
-        if(Estado1.isSelected())
-            estado = "Activo";
-        else
-            estado = "Irregular";
+            if(Estado1.isSelected())
+                estado = "Activo";
+            else
+                estado = "Irregular";
+            Especies.add(new CatalogoEspecies(nomespecie, caracteristicas, estado));
+            JOptionPane.showConfirmDialog(null, "se agregaron los datos de la especie");    
+        }catch(Exception i){
+            JOptionPane.showConfirmDialog(null, "verifica los datos ingresados");
+        }
+        
         
         especies.getNomEspecie();
         especies.getCaracteristicas();
@@ -197,6 +209,25 @@ public ArrayList<CatalogoEspecies> Especies;
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int confirmar = 0;
+        try{
+            int Confirmar = JOptionPane.showConfirmDialog(null,"Desea modificar los datos actuales?");
+    
+        
+        if (confirmar==JOptionPane.YES_OPTION){
+            String nomespecie= JOptionPane.showInputDialog("inserte el nuevo nombre de la especie");
+            String caracteristicas = JOptionPane.showInputDialog("inserte las nuevas caracteristicas ");
+           
+            Especies.add(new CatalogoEspecies(nomespecie, caracteristicas ));
+            JOptionPane.showConfirmDialog(null, "nuevos datos guardados");
+        }
+            
+        }catch(Exception E){
+            JOptionPane.showConfirmDialog(null, "revise los datos registrados");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

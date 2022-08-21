@@ -37,7 +37,6 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         NomMascotas = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        FechaNacimiento = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         NomEspecie = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -46,6 +45,7 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        FechaNacimiento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,8 +60,6 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Fecha de nacimiento:");
-
-        FechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Especie:");
@@ -83,6 +81,11 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton3.setText("Inactivar");
@@ -94,6 +97,8 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        FechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,10 +116,10 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(FechaNacimiento)
                             .addComponent(NomEspecie)
                             .addComponent(Nompropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-                            .addComponent(NomMascotas))
+                            .addComponent(NomMascotas)
+                            .addComponent(FechaNacimiento))
                         .addGap(108, 108, 108))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Activar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,10 +177,16 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
         CatalogoMascotas mascotas = new CatalogoMascotas();
         String nomMascotas,fechanacimiento,nomespecie,nompropietario;
         
-        nomMascotas =NomMascotas.getText();
-        fechanacimiento = FechaNacimiento.getText();
-        nomespecie = NomEspecie.getText();
-        nompropietario = Nompropietario.getText();
+        try{
+            nomMascotas =NomMascotas.getText();
+            fechanacimiento = FechaNacimiento.getText();
+            nomespecie = NomEspecie.getText();
+            nompropietario = Nompropietario.getText();
+            Mascotas.add(new CatalogoMascotas(nomMascotas,fechanacimiento,nomespecie,nompropietario));
+        }catch(Exception A){
+            JOptionPane.showConfirmDialog(null, "verifica los datos ingresados");
+        }
+        
         mascotas.NomMascotas();
         mascotas.FechaNacimiento();
         mascotas.NomEspecie();
@@ -190,6 +201,28 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int confirmar = 0;
+        try{
+            int Confirmar = JOptionPane.showConfirmDialog(null,"Desea modificar los datos actuales?");
+    
+        
+        if (confirmar==JOptionPane.YES_OPTION){
+            String nomMascotas= JOptionPane.showInputDialog("inserte el nuevo nombre de la mascota");
+            String fechanacimiento = JOptionPane.showInputDialog("inserte la nueva fecha de nacimiento ");
+            String nomespecie = JOptionPane.showInputDialog("inserte la nueva especie de la mascota ");
+            String nompropietario = JOptionPane.showInputDialog("inserte el nuevo propietario de la mascota ");
+           
+            Mascotas.add(new CatalogoMascotas(nomMascotas,fechanacimiento,nomespecie,nompropietario));
+            JOptionPane.showConfirmDialog(null, "nuevos datos guardados");
+        }
+            
+        }catch(Exception E){
+            JOptionPane.showConfirmDialog(null, "revise los datos registrados");
+        }
+                                            
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,7 +261,7 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Activar;
-    private javax.swing.JFormattedTextField FechaNacimiento;
+    private javax.swing.JTextField FechaNacimiento;
     private javax.swing.JTextField NomEspecie;
     private javax.swing.JTextField NomMascotas;
     private javax.swing.JTextField Nompropietario;

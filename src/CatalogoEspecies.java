@@ -18,6 +18,10 @@ public class CatalogoEspecies {
         this.Estado = Estado;
     }
 
+    CatalogoEspecies(String nomespecie, String caracteristicas) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getNomEspecie() {
         return NomEspecie;
     }

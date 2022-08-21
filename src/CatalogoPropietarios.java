@@ -1,9 +1,10 @@
 
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 
 
 public class CatalogoPropietarios {
-    String Nompropietario;
+    private String Nompropietario;
     private String Apellidos;
     private String Ciudad;
     private String Direccion;
@@ -34,6 +35,17 @@ public class CatalogoPropietarios {
         this.estado = estado;
     }
 
+    CatalogoPropietarios(String nompropietario, String apellidos, String ciudad, String direccion, String Correo, int Telefono, JRadioButton estado1) {
+        this.Nompropietario = Nompropietario;
+        this.Apellidos = Apellidos;
+        this.Ciudad = Ciudad;
+        this.Direccion = Direccion;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.estado = estado;
+    }
+
+    
     public String getNompropietario() {
         return Nompropietario;
     }

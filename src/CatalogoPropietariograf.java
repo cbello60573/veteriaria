@@ -1,9 +1,12 @@
 
+import java.awt.HeadlessException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 
 public class CatalogoPropietariograf extends javax.swing.JFrame {
@@ -15,8 +18,9 @@ public ArrayList<CatalogoPropietarios> propietarios;
 
     public CatalogoPropietariograf() {
         initComponents();
-        propietarios= new ArrayList<>();
+        propietarios= new ArrayList<CatalogoPropietarios>();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -52,8 +56,6 @@ public ArrayList<CatalogoPropietarios> propietarios;
         Editar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         mostrar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,6 +164,11 @@ public ArrayList<CatalogoPropietarios> propietarios;
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton3.setText("Inactivar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton4.setText("Cerrar");
@@ -170,19 +177,6 @@ public ArrayList<CatalogoPropietarios> propietarios;
                 jButton4ActionPerformed(evt);
             }
         });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre ", "Apellidos", "Ciudad", "Direccion", "Num Telefónico", "Correo", "estado"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,27 +210,21 @@ public ArrayList<CatalogoPropietarios> propietarios;
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(estado1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(17, 17, 17)
-                                                .addComponent(jButton3)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(8, 8, 8)
-                                                .addComponent(estado2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(41, 41, 41)
-                                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(correo))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(estado1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(17, 17, 17)
+                                            .addComponent(jButton3)))
+                                    .addGap(27, 27, 27)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(estado2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(correo))
                             .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,33 +246,30 @@ public ArrayList<CatalogoPropietarios> propietarios;
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                            .addComponent(correo))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(estado1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(estado2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                            .addComponent(Activar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                            .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(correo))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(estado1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(estado2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(Activar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addGap(256, 256, 256))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void ApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ApellidosActionPerformed
@@ -312,8 +297,8 @@ public ArrayList<CatalogoPropietarios> propietarios;
         correo.setText("");
         telefono.setText("");
         estado1.setText("");
-        
-        
+    }
+    private void Modificar(){
         
     }
     private void ActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivarActionPerformed
@@ -321,54 +306,54 @@ public ArrayList<CatalogoPropietarios> propietarios;
         String nompropietario, apellidos, ciudad, direccion, Correo, Estado;
         int Telefono=0;
         
-        nompropietario = Nompropietario.getText();
-        apellidos = Apellidos.getText();
-        ciudad = Ciudad.getSelectedItem().toString();
-        direccion = Direccion.getText();
-        Correo = correo.getText();
-        Telefono= Integer.parseInt(telefono.getText());
+        try{
+            
+            nompropietario=Nompropietario.getText();
+            apellidos = Apellidos.getText();
+            ciudad = Ciudad.getSelectedItem().toString();
+            direccion = Direccion.getText();
+            Correo = correo.getText();
+            Telefono= Integer.parseInt(telefono.getText());
         
-        if(estado1.isSelected())
-            Estado = "Activo";
-        else
-            Estado = "Irregular";
-        
-        
-        
-        Propietarios.getNompropietario();
-        Propietarios.getApellidos();
-        Propietarios.getCiudad();
-        Propietarios.getDireccion();
-        Propietarios.getTelefono();
-        Propietarios.getCorreo();
-        Propietarios.getEstado();
-        JOptionPane.showMessageDialog(null, "sus datos fueron agregados");
-        limpiar();
-        VerDatos(); 
-    }//GEN-LAST:event_ActivarActionPerformed
-    private void VerDatos(){
-        String Mat[][]= new String [propietarios.size()][7];
-        CatalogoPropietarios aux;
-        for (int i=0;i<propietarios.size();i++){
-            aux=propietarios.get(i);
-            Mat[i][0]=aux.getNompropietario();
-            Mat[i][1]=aux.getApellidos();
-            Mat[i][2]=aux.getCiudad();
-            Mat[i][3]=aux.getDireccion();
-            Mat[i][4]=Integer.toString(aux.getTelefono());
-            Mat[i][5]=aux.getCorreo();
-            Mat[i][6]=aux.getEstado();
+            if(estado1.isSelected())
+                Estado = "Activo";
+            else
+                Estado = "Irregular";
+            propietarios.add(new CatalogoPropietarios(nompropietario, apellidos, ciudad, direccion, Correo, Telefono, estado1));
+            JOptionPane.showMessageDialog(null, "sus datos fueron agregados");
+        }catch(HeadlessException | NumberFormatException e){
+            JOptionPane.showConfirmDialog(null, "verifica los datos ingresados");
         }
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            Mat,
-            new String [] {
-                "Nombre ", "Apellidos", "Ciudad", "Direccion", "Num Telefónico", "Correo", "estado"
-            }
-        ));
+        limpiar();
         
-    }
+        
+        
+    }//GEN-LAST:event_ActivarActionPerformed
+    
+    
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-          
+        
+        int confirmar = 0;
+        try{
+            int Confirmar = JOptionPane.showConfirmDialog(null,"Desea modificar los datos actuales?");
+    
+        
+        if (confirmar==JOptionPane.YES_OPTION){
+            String nompropietario= JOptionPane.showInputDialog("inserte el nuevo nombre del propietario que desea cambiar");
+            String apellidos = JOptionPane.showInputDialog("inserte el nuevo nombre del propietario que desea cambiar");
+            String ciudad = JOptionPane.showInputDialog("inserte el nuevo nombre del propietario que desea cambiar");
+            String direccion = JOptionPane.showInputDialog("inserte el nuevo nombre del propietario que desea cambiar");
+            String Correo = JOptionPane.showInputDialog("inserte el nuevo nombre del propietario que desea cambiar");
+            int Telefono = Integer.parseInt(JOptionPane.showInputDialog("inserte el nuevo númerod e telefonor")) ;
+            propietarios.add(new CatalogoPropietarios(nompropietario, apellidos, ciudad, direccion, Correo, Telefono, estado1));
+            JOptionPane.showConfirmDialog(null, "nuevos datos guardados");
+        }
+            
+        }catch(Exception E){
+            JOptionPane.showConfirmDialog(null, "revise los datos registrados");
+        }
+        
+
     }//GEN-LAST:event_EditarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -376,6 +361,10 @@ public ArrayList<CatalogoPropietarios> propietarios;
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     
     /**
@@ -436,8 +425,6 @@ public ArrayList<CatalogoPropietarios> propietarios;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable mostrar;
     private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
