@@ -81,7 +81,7 @@ public void agregar() {
             } catch (EOFException ex02) {
                 dis.close();
                 if (encontrado == 0) {
-                    JOptionPane.showMessageDialog(null, "¡El estudiante buscado no existe!");
+                    JOptionPane.showMessageDialog(null, "¡El propietario buscado no existe!");
                 }
             }
         } catch (FileNotFoundException ex03) {
