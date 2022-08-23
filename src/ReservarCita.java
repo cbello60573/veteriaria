@@ -21,6 +21,8 @@ public class ReservarCita extends javax.swing.JFrame {
     
     public ReservarCita() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 public void agregar() {
         Citas_1 e = new Citas_1();
@@ -93,8 +95,8 @@ public void agregar() {
     public void editar() {
         try {
             try {
-                String ced;
-                ced = JOptionPane.showInputDialog(null,"Digite el nombre del propietario a modificar:");
+                String prop;
+                prop = JOptionPane.showInputDialog(null,"Digite el nombre del propietario a modificar:");
                 DataInputStream dis = new DataInputStream(new FileInputStream(
                         "citas.dat"));
                 DataOutputStream dos = new DataOutputStream(new FileOutputStream(
@@ -107,12 +109,12 @@ public void agregar() {
                         mascot = dis.readUTF();
                         Nveterinario = dis.readUTF();
                         pag = dis.readInt();
-                        if (ced == null ? propietario == null : ced.equals(propietario)) {
+                        if (prop == null ? propietario == null : prop.equals(propietario)) {
                             fech = JOptionPane.showInputDialog(null,
                                     "Digite la nueva fecha de la cita:");
                             hor = ((JOptionPane.showInputDialog(null,
                                     "Digite la nueva hora de la cita:")));
-                            JOptionPane.showMessageDialog(null, "¡Cita cancelada!");
+                            JOptionPane.showMessageDialog(null, "¡Cita Modificada!");
                         }
                         dos.writeUTF(propietario);
                         dos.writeUTF(fech);

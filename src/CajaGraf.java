@@ -108,7 +108,7 @@ public class CajaGraf extends javax.swing.JFrame implements Observer {
         jScrollPane1.setViewportView(visual);
 
         Cerrar.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        Cerrar.setText("jButton1");
+        Cerrar.setText("Cancelar");
         Cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CerrarActionPerformed(evt);
@@ -199,7 +199,9 @@ public class CajaGraf extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_ingresosActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
-        // TODO add your handling code here:
+        Menú m = new Menú();
+        m.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_CerrarActionPerformed
     
     /**

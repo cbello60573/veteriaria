@@ -15,7 +15,6 @@ public class Login extends javax.swing.JFrame {
         
         us.usuario = JOptionPane.showInputDialog("Ingrese su usuario");
         co.contraseña = JOptionPane.showInputDialog("Ingrese su contraseña");
-        es.estado = JOptionPane.showInputDialog("Ingrese su estado");
                
         lista.addLast(us.usuario);//0
         list.addLast(co.contraseña);//1
