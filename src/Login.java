@@ -7,10 +7,8 @@ public class Login extends javax.swing.JFrame {
     
     LinkedList<String> lista = new LinkedList<>();
     LinkedList<String> list = new LinkedList<>(); 
-    LinkedList<String> lis = new LinkedList<>(); 
     Persona us = new Persona();
     Persona co = new Persona();
-    Persona es = new Persona();
     public void agregar(){
         
         us.usuario = JOptionPane.showInputDialog("Ingrese su usuario");
