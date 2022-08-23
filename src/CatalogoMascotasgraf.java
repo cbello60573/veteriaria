@@ -183,6 +183,7 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
             nomespecie = NomEspecie.getText();
             nompropietario = Nompropietario.getText();
             Mascotas.add(new CatalogoMascotas(nomMascotas,fechanacimiento,nomespecie,nompropietario));
+            JOptionPane.showInputDialog(null,"Datos de la mascota guardados");
         }catch(Exception A){
             JOptionPane.showConfirmDialog(null, "verifica los datos ingresados");
         }
@@ -191,7 +192,7 @@ public class CatalogoMascotasgraf extends javax.swing.JFrame {
         mascotas.FechaNacimiento();
         mascotas.NomEspecie();
         mascotas.Nompropietario();
-        JOptionPane.showInputDialog(null,"Datos de la mascota guardados");
+        
         limpiar();
                 
     }//GEN-LAST:event_ActivarActionPerformed
